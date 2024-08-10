@@ -3,26 +3,22 @@
 const userForm = new UserForm();
 
 userForm.loginFormCallback = function (data) {
-    let func = function() {
-        if(func) {
+    ApiConnector.login(data, func => {
+        if(ApiConnector.parseResponseBody(response)) {
             location.reload();
         } else {
-            userForm.setLoginErrorMessage(message);
+            ApiConnector.login.catch();
         }
-    }
-    ApiConnector.login(data, func);
-    
+    });   
 }
 
 userForm.registerFormCallback = function (data) {
-    let func = function() {
-        if(func) {
+    ApiConnector.register(data, func => {
+        if(ApiConnector.parseResponseBody(response)) {
             location.reload();
         } else {
-            userForm.setLoginErrorMessage(message);
+            ApiConnector.register.catch();
         }
-    }
-    ApiConnector.login(data, func);
-    
+    }); 
 }
     
